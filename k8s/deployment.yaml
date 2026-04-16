@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expense-api
+  template:
+    metadata:
+      labels:
+        app: expense-api
+    spec:
+      containers:
+      - name: expense-api
+        image: 429441944962.dkr.ecr.ap-south-1.amazonaws.com/expense-api:latest
+        ports:
+        - containerPort: 8000
