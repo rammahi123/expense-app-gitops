@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: expense-api
+  labels:
+    app: expense-api
 spec:
   replicas: 1
   selector:
@@ -15,27 +17,29 @@ spec:
       containers:
       - name: expense-api
         image: 429441944962.dkr.ecr.ap-south-1.amazonaws.com/expense-api:latest
+        imagePullPolicy: Always
+
         ports:
         - containerPort: 8000
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "100m"
-            limits:
-              memory: "256Mi"
-              cpu: "200m"
 
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
 
         livenessProbe:
-           httpGet:
-             path: /health
-             port: 8000
-           initialDelaySeconds: 10
-           periodSeconds: 10
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
 
         readinessProbe:
-           httpGet:
-             path: /health
-             port: 8000
-           initialDelaySeconds: 5
-           periodSeconds: 5  
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
