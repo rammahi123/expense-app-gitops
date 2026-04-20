@@ -12,9 +12,6 @@ spec:
       labels:
         app: expense-api
     spec:
-      imagePullSecrets:
-        - name: ecr-secret
-
       containers:
       - name: expense-api
         image: 429441944962.dkr.ecr.ap-south-1.amazonaws.com/expense-api:latest
