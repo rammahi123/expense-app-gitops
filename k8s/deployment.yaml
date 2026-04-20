@@ -20,3 +20,26 @@ spec:
         image: 429441944962.dkr.ecr.ap-south-1.amazonaws.com/expense-api:latest
         ports:
         - containerPort: 8000
+
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              requests: "256Mi"
+              cpu: "200m"
+
+
+        livenessProbe:
+           httpGet:
+             path: /health
+             port: 8000
+           initialDelaySeconds: 10
+           periodSeconds: 10
+
+        readinessProbe:
+           httpGet:
+             path: /health
+             port: 8000
+           initialDelaySeconds: 5
+           periodSeconds: 5  
