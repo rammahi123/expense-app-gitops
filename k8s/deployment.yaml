@@ -17,7 +17,6 @@ spec:
         image: 429441944962.dkr.ecr.ap-south-1.amazonaws.com/expense-api:latest
         ports:
         - containerPort: 8000
-
           resources:
             requests:
               memory: "128Mi"
