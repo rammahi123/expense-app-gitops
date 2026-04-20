@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: expense-api-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: expense-api
   ports:
-    - port: 80
+    - protocol: TCP
+      port: 80
       targetPort: 8000
-      nodePort: 30007
